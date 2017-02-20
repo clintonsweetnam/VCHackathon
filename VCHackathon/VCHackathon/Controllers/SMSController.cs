@@ -19,20 +19,20 @@ namespace VCHackathon.Controllers
             var authToken = "96f6441d059c68d4b1105f55de64b572";  // Your Auth Token from www.twilio.com/console
             var twillioPhoneNumber = ConfigurationManager.AppSettings["TwilloPhoneNumber"];
 
-            //var twilio = new TwilioRestClient(accountSid, authToken);
-            //var message = twilio.SendMessage(
-            //    twillioPhoneNumber, // From (Replace with your Twilio number)
-            //    model.PhoneNumber, // To (Replace with your phone number)
-            //    model.MessageContent
-            //    );
+            var twilio = new TwilioRestClient(accountSid, authToken);
+            var message = twilio.SendMessage(
+                twillioPhoneNumber, // From (Replace with your Twilio number)
+                model.PhoneNumber, // To (Replace with your phone number)
+                model.MessageContent
+                );
 
-            //if (message.RestException != null)
-            //{
-            //    var error = message.RestException.Message;
-            //    Console.WriteLine(error);
-            //    Console.Write("Press any key to continue.");
-            //    Console.ReadKey();
-            //}
+            if (message.RestException != null)
+            {
+                var error = message.RestException.Message;
+                Console.WriteLine(error);
+                Console.Write("Press any key to continue.");
+                Console.ReadKey();
+            }
 
             return new HttpResponseMessage(HttpStatusCode.OK);
         }
